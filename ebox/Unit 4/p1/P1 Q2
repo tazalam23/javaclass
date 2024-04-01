@@ -1,0 +1,68 @@
+import java.util.ArrayList;
+import java.util.List;
+
+class Event {
+    private String eventName;
+    private String organiserName;
+    private Double eventCost;
+
+    public Event() {
+    }
+
+    public Event(String eventName, String organiserName, Double eventCost) {
+        this.eventName = eventName;
+        this.organiserName = organiserName;
+        this.eventCost = eventCost;
+    }
+
+    public String getEventName() {
+        return eventName;
+    }
+
+    public void setEventName(String eventName) {
+        this.eventName = eventName;
+    }
+
+    public String getOrganiserName() {
+        return organiserName;
+    }
+
+    public void setOrganiserName(String organiserName) {
+        this.organiserName = organiserName;
+    }
+
+    public Double getEventCost() {
+        return eventCost;
+    }
+
+    public void setEventCost(Double eventCost) {
+        this.eventCost = eventCost;
+    }
+
+    public void display(List<Event> eventList) {
+        eventList.forEach(event -> System.out.println(event.getEventName() + "|" + event.getOrganiserName() + "|" + event.getEventCost()));
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        System.out.println("Enter the number of events");
+        int n = scanner.nextInt();
+        scanner.nextLine(); // Consume newline
+        
+        List<Event> eventList = new ArrayList<>();
+                    System.out.println("Enter event details in CSV(Event Name,Organiser Name,Event Cost)");
+        for (int i = 0; i < n; i++) {
+            String[] details = scanner.nextLine().split(",");
+            Event event = new Event(details[0], details[1], Double.parseDouble(details[2]));
+            eventList.add(event);
+        }
+        
+        Event event = new Event();
+        event.display(eventList);
+        
+        scanner.close();
+    }
+}
